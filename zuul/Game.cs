@@ -55,13 +55,23 @@ namespace Zuul
 		 */
 		public void Play()
 		{
+
+
 			PrintWelcome();
 
 			// Enter the main command loop.  Here we repeatedly read commands and
+
 			// execute them until the player wants to quit.
 			bool finished = false;
 			while (!finished)
 			{
+				if (!player.IsAlive())
+				{
+					Console.WriteLine("you're dead");
+                    finished = true;
+                    continue;
+                }
+				
 				Command command = parser.GetCommand();
 				finished = ProcessCommand(command);
 			}
@@ -156,8 +166,10 @@ namespace Zuul
 			}
 			else
 			{
+				player.Damage(10);
 				player.CurrentRoom = nextRoom;
 				Console.WriteLine(player.CurrentRoom.GetLongDescription());
+				Console.WriteLine("your current HP" + player.Health);
 			}
 		}
 
