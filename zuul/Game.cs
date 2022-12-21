@@ -169,7 +169,7 @@ namespace Zuul
 				player.Damage(10);
 				player.CurrentRoom = nextRoom;
 				Console.WriteLine(player.CurrentRoom.GetLongDescription());
-				Console.WriteLine("your current HP" + player.Health);
+				Console.WriteLine("your current HP: " + player.Health);
 			}
 		}
 
