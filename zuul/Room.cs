@@ -84,5 +84,15 @@ namespace Zuul
 
 			return str;
 		}
-	}
+        private Inventory Capsule;
+		// property
+		public Inventory capsule
+		{
+			get { return capsule; }
+		}
+		public Room(){
+            // a Room can handle a big Inventory.
+            Capsule = new Inventory(999999);
+		}
+    }
 }

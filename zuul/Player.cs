@@ -29,6 +29,19 @@ namespace zuul
         { return (health > 0); }
 
     }
+    private Inventory bag; 
+    public Player()
+    {// 25kg is pretty heavy to carry around all day.
+     bag = new Inventory(70);
+    }
+    
+    public bool TakeFromChest(string itemName)
+    {
+        
+         return false;
+    }
+    public bool DropToChest(string itemName)
+    {
+       return false;}
 
-
-}
+    }
