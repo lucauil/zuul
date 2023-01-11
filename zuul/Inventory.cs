@@ -6,11 +6,11 @@ namespace Zuul
     public class Inventory
     {
         private int maxWeight;
-        private Collection<Inventory> items;
+        private Dictionary<string,Item> items;
         public Inventory(int maxWeight)
         {
             this.maxWeight = maxWeight;
-            this.items = new Collection<Inventory> ();
+            this.items = new Dictionary<string, Item>();
         }
         public bool Put(string itemName, Item item)
         {

@@ -8,14 +8,19 @@ using Zuul;
 
 namespace zuul
 {
+
     public class Player
     {
         private int health;
+
+        private Inventory bag;
         public Room CurrentRoom { get; set; }
         public Player()
         {
             CurrentRoom = null;
             health = 100;
+
+            bag = new Inventory(70);
         }
 
         public int Health
@@ -28,20 +33,19 @@ namespace zuul
         public bool IsAlive()
         { return (health > 0); }
 
-    }
-    private Inventory bag; 
-    public Player()
-    {// 25kg is pretty heavy to carry around all day.
-     bag = new Inventory(70);
-    }
-    
-    public bool TakeFromChest(string itemName)
-    {
-        
-         return false;
-    }
-    public bool DropToChest(string itemName)
-    {
-       return false;}
+
+
+
+
+        public bool TakeFromCapsule(string itemName)
+        {
+
+            return false;
+        }
+        public bool DropToCapsule(string itemName)
+        {
+            return false;
+        }
 
     }
+}
