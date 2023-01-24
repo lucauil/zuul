@@ -39,12 +39,42 @@ namespace zuul
 
         public bool TakeFromCapsule(string itemName)
         {
+            Item item = CurrentRoom.Capsule.Get(itemName);
 
-            return false;
+            if (item != null)
+            {
+                if (this.bag.Put(itemName, item))
+                {
+                    Console.WriteLine(" you have " + itemName + " in your inventory ") ;
+                    return true;
+                }
+                else {
+                    Console.WriteLine(" the " + itemName + " is too big for your bag. ") ;
+                    CurrentRoom.Capsule.Put(itemName, item);
+                    return false;
+                }
+            } else {
+                Console.WriteLine(" there is no " + itemName + " in this room. ") ;
+                return false;
+            }
         }
+    
         public bool DropToCapsule(string itemName)
         {
-            return false;
+            Item item = this.bag.Get(itemName);
+
+            if (item != null)
+            {
+                CurrentRoom.Capsule.Put(itemName, item);
+                Console.WriteLine(" you dropped " + itemName + " from your inventory ");
+                return true;
+            }
+            else
+            {
+                // Inventory does not contain the specified item, so nothing happens
+                Console.WriteLine("Inventory does not contain the specified item...");
+                return false;
+            }
         }
 
     }

@@ -49,6 +49,19 @@ namespace Zuul
 			return str;
 		}
 
+		public string GetCapsuleString()
+		{
+			string str = "";
+			if (capsule.IsEmpty())
+			{
+				str += "The capsule is empty.";
+				return str;
+			}
+			str += "These items are in the capsule:\n";
+			str += capsule.Show();
+			return str;
+		}
+
 		/**
 		 * Return the room that is reached if we go from this room in direction
 		 * "direction". If there is no room in that direction, return null.

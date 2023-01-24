@@ -7,9 +7,9 @@ namespace Zuul
 	{
 		private Parser parser;
 		private Player player;
-		
 
-		public Game()
+        
+        public Game()
 		{
             parser = new Parser();
 			player = new Player();
@@ -46,8 +46,10 @@ namespace Zuul
             dormroom.AddExit("down", outside);
 
 			basement.AddExit("up", lab);
-			
-			player.CurrentRoom = outside;  // start game outside
+
+            //outside.Capsule.Put("potion",new Item(50,"A spray-type medicine for treating wounds. It can be used to restore 20 HP to the user."));
+
+            player.CurrentRoom = outside;  // start game outside
 		}
 
 		/**
@@ -121,6 +123,15 @@ namespace Zuul
                 case "look":
                     Console.WriteLine(player.CurrentRoom.GetLongDescription());
                     break;
+                case "take":
+                  Take(command);
+                    break;
+                case "drop":
+                    Drop(command);
+                    break;
+
+				default:
+					break;
 
             }
 
@@ -166,12 +177,26 @@ namespace Zuul
 			}
 			else
 			{
-				player.Damage(10);
+				
 				player.CurrentRoom = nextRoom;
 				Console.WriteLine(player.CurrentRoom.GetLongDescription());
 				Console.WriteLine("your current HP: " + player.Health);
 			}
 		}
+		private void Take(Command command)
+        {
+			if (!command.HasSecondWord())
+			{
+				
+			}
+        }
 
+        private void Drop(Command command)
+        {
+			if (!command.HasSecondWord())
+			{
+				
+			}
+        }
 	}
 }
