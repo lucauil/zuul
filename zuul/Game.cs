@@ -122,6 +122,7 @@ namespace Zuul
 					break;
                 case "look":
                     Console.WriteLine(player.CurrentRoom.GetLongDescription());
+					//player.Bag.show();
                     break;
                 case "take":
                   Take(command);
@@ -185,18 +186,25 @@ namespace Zuul
 		}
 		private void Take(Command command)
         {
-			if (!command.HasSecondWord())
-			{
-				
-			}
+            if (!command.HasSecondWord())
+            {
+                Console.WriteLine("take what?");
+
+            }
+            string itemname = command.GetSecondWord();
+            player.TakeFromCapsule(itemname);
         }
 
         private void Drop(Command command)
         {
+
 			if (!command.HasSecondWord())
 			{
+				Console.WriteLine("drop what?");
 				
 			}
+			string itemname = command.GetSecondWord();
+			player.DropToCapsule(itemname);
         }
 	}
 }

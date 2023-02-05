@@ -30,14 +30,20 @@ namespace zuul
         }
         public void Damage(int amount)
         { health = health - amount; }
+        public void Heal(int amount)
+        { health = health + amount; }
         public bool IsAlive()
         { return (health > 0); }
 
 
 
 
+       // public string Use(string itemName)
+        //{
+         //  if itemname = potion 
+        //}
 
-        public bool TakeFromCapsule(string itemName)
+            public bool TakeFromCapsule(string itemName)
         {
             Item item = CurrentRoom.Capsule.Get(itemName);
 
