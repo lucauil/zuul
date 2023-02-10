@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using zuul;
 
 namespace Zuul
 {
@@ -41,12 +43,14 @@ namespace Zuul
 
         public string Show()
         {
+            
             string total = "";
             foreach (string itemName in items.Keys)
             {
                 total += items[itemName].Description + "kg\n";
             }
             return total;
+            
         }
 
         public bool IsEmpty()

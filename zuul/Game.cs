@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using zuul;
 
 namespace Zuul
@@ -47,9 +48,11 @@ namespace Zuul
 
 			basement.AddExit("up", lab);
 
-            //outside.Capsule.Put("potion",new Item(50,"A spray-type medicine for treating wounds. It can be used to restore 20 HP to the user."));
-
             player.CurrentRoom = outside;  // start game outside
+
+			//items
+            lab.Capsule.Put("potion", new Item(50,"A spray-type medicine for treating wounds. It can be used to restore 20 HP to the user."));
+
 		}
 
 		/**
@@ -122,7 +125,7 @@ namespace Zuul
 					break;
                 case "look":
                     Console.WriteLine(player.CurrentRoom.GetLongDescription());
-					//player.Bag.show();
+                    Console.WriteLine(player.CurrentRoom.GetCapsuleString());
                     break;
                 case "take":
                   Take(command);
@@ -130,8 +133,11 @@ namespace Zuul
                 case "drop":
                     Drop(command);
                     break;
+                case "show":
+                    Show(command);
+                    break;
 
-				default:
+                default:
 					break;
 
             }
@@ -195,6 +201,7 @@ namespace Zuul
             player.TakeFromCapsule(itemname);
         }
 
+		
         private void Drop(Command command)
         {
 
@@ -205,6 +212,11 @@ namespace Zuul
 			}
 			string itemname = command.GetSecondWord();
 			player.DropToCapsule(itemname);
+        }
+
+		private void Show(Command command)
+		{
+            Console.WriteLine(player.Bag.Show());
         }
 	}
 }

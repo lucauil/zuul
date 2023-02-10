@@ -13,14 +13,14 @@ namespace zuul
     {
         private int health;
 
-        private Inventory bag;
+        public Inventory Bag { get; }
         public Room CurrentRoom { get; set; }
         public Player()
         {
             CurrentRoom = null;
             health = 100;
 
-            bag = new Inventory(70);
+            Bag = new Inventory(70);
         }
 
         public int Health
@@ -44,30 +44,33 @@ namespace zuul
         //}
 
             public bool TakeFromCapsule(string itemName)
-        {
-            Item item = CurrentRoom.Capsule.Get(itemName);
-
-            if (item != null)
             {
-                if (this.bag.Put(itemName, item))
+                Item item = CurrentRoom.Capsule.Get(itemName);
+
+                if (item != null)
                 {
+                    if (this.Bag.Put(itemName, item))
+                    {
                     Console.WriteLine(" you have " + itemName + " in your inventory ") ;
                     return true;
-                }
-                else {
-                    Console.WriteLine(" the " + itemName + " is too big for your bag. ") ;
-                    CurrentRoom.Capsule.Put(itemName, item);
+                    }
+                    else 
+                    {
+                        Console.WriteLine(" the " + itemName + " is too big for your bag. ") ;
+                        CurrentRoom.Capsule.Put(itemName, item);
+                        return false;
+                    }
+                }   
+                else 
+                {
+                    Console.WriteLine(" there is no " + itemName + " in this room. ") ;
                     return false;
                 }
-            } else {
-                Console.WriteLine(" there is no " + itemName + " in this room. ") ;
-                return false;
             }
-        }
     
         public bool DropToCapsule(string itemName)
         {
-            Item item = this.bag.Get(itemName);
+            Item item = this.Bag.Get(itemName);
 
             if (item != null)
             {
@@ -78,7 +81,7 @@ namespace zuul
             else
             {
                 // Inventory does not contain the specified item, so nothing happens
-                Console.WriteLine("Inventory does not contain the specified item...");
+                Console.WriteLine("Your bag does not contain the specified item...");
                 return false;
             }
         }
