@@ -38,10 +38,22 @@ namespace zuul
 
 
 
-       // public string Use(string itemName)
-        //{
-         //  if itemname = potion 
-        //}
+       public string Use(Command command)
+        {
+            string str = "";
+            if (!command.HasSecondWord())
+            {
+                str = "Use what??";
+                return str;
+            }
+            string itemName = command.GetSecondWord();
+           if (itemName == "potion")
+           {
+                Heal(20);
+                str = "You feel much better now";
+           }
+            return str;
+        }
 
             public bool TakeFromCapsule(string itemName)
             {

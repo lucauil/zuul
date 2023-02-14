@@ -136,6 +136,9 @@ namespace Zuul
                 case "show":
                     Show(command);
                     break;
+                case "use":
+                    player.Use(command);
+                    break;
 
                 default:
 					break;
@@ -184,7 +187,7 @@ namespace Zuul
 			}
 			else
 			{
-				
+				player.Damage(10);
 				player.CurrentRoom = nextRoom;
 				Console.WriteLine(player.CurrentRoom.GetLongDescription());
 				Console.WriteLine("your current HP: " + player.Health);
